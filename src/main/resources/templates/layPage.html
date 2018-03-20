@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>layPage演示</title>
+    <script type="text/javascript" src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.8.3.min.js"></script>
+
+    <script type="text/javascript" src="layPage/laypage.js"></script>
+</head>
+<body>
+<div class="view" style="margin: 10px auto;"></div>
+<div class="page"></div>
+<script>
+    var pcountString= "${pcount}";
+    var psizeString= "${psize}";
+    var pcountInt= parseInt(pcountString);//总页数
+    var psizeInt=parseInt(psizeString); //页面大小
+    var pindex = "${pindex}";// 当前页
+    var ptotalpages=Math.ceil(pcountInt/psizeInt);// 总记录数
+    layui.define(['layer', 'laypage' ], function(exports) {
+        var layer = layui.layer;
+        var laypage = layui.laypage;
+        var pcount = pcountInt;// 总记录数
+        var psize = psizeInt;// 每一页的记录数
+        // 分页
+        laypage({
+            cont : 'pagination', // 页面上的id
+            pages : ptotalpages,//总页数
+            curr : pindex,//当前页
+            skin: '#999999',//颜色
+            jump : function(obj, first) {
+                if (!first) {
+                    var parId=$("#parId").val();
+                    var pindex=obj.curr;
+                    window.location.href="${ctx}/web/rest/RecycleManage/GetFileList?parId=" rel="external nofollow" +parId+"&pindex="+pindex;//跳转链接
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
