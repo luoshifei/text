@@ -25,4 +25,9 @@ public class Box<T> {
         stringBox.add("菜鸟教程");
         System.out.println(integerBox.getT());
     }
+    /**
+    *
+    * 测试GitHub
+     *
+    * */
 }
